@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Layer Gating for Speech Enhancement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            margin-bottom: 40px;
+        }
+        .abstract {
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #444;
+            text-align: left;
+        }
+        .image-container {
+            margin-bottom: 40px;
+        }
+        img {
+            max-width: 80%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .caption {
+            max-width: 60%;
+            margin: 0 auto 40px auto;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Dynamic Layer Gating for Speech Enhancement</h1>
+    
+    <div class="abstract">
+        <strong>Abstract:</strong> Conventional deep learning-based speech enhancement models perform inference with fixed network structure. However, due to the time-varying spectral characteristics of speech and noise, the noisy signal exhibits varying subband and segmental signal-to-noise ratios. Adapting the network structure to these variations may offer computational efficiency and interpretability. This work introduces two gating mechanisms, sample-level gating (SG) and time-frequency level gating (TFG), to dynamically skip layers within the two-stage conformer blocks of the conformer-based metric GAN network. Our experiments demonstrate competitive performance while reducing multiply-accumulate operations by 36% with SG and 48% with TFG. Furthermore, we provide insights into the model behavior by analyzing the gate activations and intermediate layer outputs. Our analysis shows that initial layers prioritize low-frequency speech regions, while later layers focus on nonspeech regions and higher frequencies.
+    </div>
+    
+    <div class="image-container">
+        <img src="images/layer_wise_activations_analysis.png" alt="Image 1">
+        <div class="caption">Figure 2: Illustration of gate activations. (a) Noisy Spectrogram (b) Output spectrogram obtained by skipping all the conformer layers (c) Time-gating (d) Frequency-gating</div>
+    </div>
+
+    <div class="image-container">
+        <img src="images/layer_wise_analysis.png" alt="Image 2">
+        <div class="caption">Figure 3: Illustration of the output magnitude spectrograms obtained by passing the intermediate layer outputs through decoder, for the same 2.5dB noisy segment shown in Figure 2. Time-conformer outputs in left column (a,c,e,g), and frequency-conformer outputs in right column (b, d, f, h)</div>
+    </div>
+
+    <div class="image-container">
+        <img src="images/snr_noise_wise_activations.png" alt="Image 3">
+        <div class="caption">Figure 5: Noise and SNR-wise average execution rates of the conformer layers</div>
+    </div>
+
+</body>
+</html>
+
